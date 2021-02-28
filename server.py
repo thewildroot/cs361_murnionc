@@ -1,5 +1,6 @@
 from adresses import generate_addresses
 from flask import Flask, request, jsonify
+from option_lists import states
 
 app = Flask(__name__)
 
@@ -11,6 +12,8 @@ def get():
 
     if not state:
         return "Error state parameter missing"
+    if state.upper() not in states:
+        return "Not a valid state"
     if not number:
         return "Error number parameter missing"
 
